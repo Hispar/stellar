@@ -5,12 +5,14 @@
         <section>
             <ul>
                 {% verbatim %}
-                <li ng-class="{ active:panel.isSelected(1) }"><a href ng-click="panel.selectedTab(1)">Select Ship</a>
-                </li>
-                <li ng-class="{ active:panel.isSelected(2) }"><a href ng-click="panel.selectedTab(2)">Ship details</a>
-                </li>
-                <li ng-class="{ active:panel.isSelected(3) }"><a href ng-click="panel.selectedTab(3)">Ship tunning</a>
-                </li>
+                    <li ng-class="{ active:panel.isSelected(1) }"><a href ng-click="panel.selectedTab(1)">Select
+                        Ship</a>
+                    </li>
+                    <li ng-class="{ active:panel.isSelected(2) }"><a href">Ship details</a>
+                    </li>
+                    <li ng-class="{ active:panel.isSelected(3) }"><a href ng-click="panel.selectedTab(3)">Ship
+                        tunning</a>
+                    </li>
                 {% endverbatim %}
             </ul>
         </section>
@@ -19,7 +21,8 @@
                 {% for ship in ship_list %}
                     <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
                         {{ ship.name }}
-                        <img src="{{ ship.image }}" class="img-responsive img-rounded" alt="{{ ship.name }}">
+                        <img src="{{ ship.image }}" class="img-responsive img-rounded" alt="{{ ship.name }}"
+                             ng-click="panel.selectShip({{ ship.id }})">
                     </div>
                     {% if forloop.counter|divisibleby:4 %}
                         </div>
@@ -29,18 +32,53 @@
                 </div>
         </div>
         <div class="container-fluid" ng-show="panel.isSelected(2)">
-            a
+            {% verbatim %}
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                        {{ ship.description }}
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Specification</th>
+                                <th>Detail</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Fabrication date</td>
+                                <td>{{ ship.fabrication_date | date : 'yyyy' }}</td>
+                            </tr>
+                            <tr>
+                                <td>HP</td>
+                                <td>{{ ship.hp }}</td>
+                            </tr>
+                            <tr>
+                                <td>Power</td>
+                                <td>{{ ship.power }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            {% endverbatim %}
         </div>
         <div class="container-fluid" ng-show="panel.isSelected(3)">
+            {% verbatim %}
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
                     image
                     form
-                        colorpicker
-                        checkbox
-                        checkbox
-                        multiselect
-                        datepicker
+                    colorpicker
+                    checkbox
+                    checkbox
+                    multiselect
+                    datepicker
                 </div>
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
                     map
@@ -48,6 +86,7 @@
                     button
                 </div>
             </div>
+            {% endverbatim %}
         </div>
     </div>
 {% endblock %}
