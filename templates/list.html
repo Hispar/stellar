@@ -1,7 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="container-fluid">
+    <section ng-controller="PanelShipController as panel">
+        <ul>
+            {% verbatim %}
+            <li ng-class="{ active:panel.isSelected(1) }"><a href ng-click="panel.selectedTab(1)">Select Ship</a></li>
+            <li ng-class="{ active:panel.isSelected(2) }"><a href ng-click="panel.selectedTab(2)">Ship details</a></li>
+            <li ng-class="{ active:panel.isSelected(3) }"><a href ng-click="panel.selectedTab(3)">Ship tunning</a></li>
+            {% endverbatim %}
+        </ul>
+    </section>
+    <div class="container-fluid" ng-show="panel.isSelected(1)">
         <div class="row">
             {% for ship in ship_list %}
                 <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
@@ -10,10 +19,15 @@
                 </div>
                 {% if forloop.counter|divisibleby:4 %}
                     </div>
-
                     <div class="row">
                 {% endif %}
             {% endfor %}
-            </div>
+        </div>
+    </div>
+    <div class="container-fluid" ng-show="panel.isSelected(2)">
+    a
+    </div>
+    <div class="container-fluid" ng-show="panel.isSelected(3)">
+    b
     </div>
 {% endblock %}

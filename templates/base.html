@@ -1,35 +1,27 @@
 {% load staticfiles %}
-
 <!DOCTYPE html>
-<html>
+<html ng-app="stellar">
 <head>
     <title>{{ title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- 1. Load libraries -->
-    <!-- IE required polyfill -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.33.3/es6-shim.min.js"></script>
-
-    <script src="https://code.angularjs.org/2.0.0-beta.3/angular2-polyfills.js"></script>
-    <script src="https://code.angularjs.org/2.0.0-beta.3/Rx.umd.js"></script>
-    <script src="https://code.angularjs.org/2.0.0-beta.3/angular2-all.umd.dev.js"></script>
-
-    <!-- 2. Load our 'modules' -->
-    {#    <script src='app/app.component.js'></script>#}
-    {#    <script src='app/main.js'></script>#}
     {% block styles %}
         <!-- Bootstrap core CSS -->
         <link href="{% static "/assets/css/bootstrap.min.css" %}" rel="stylesheet">
         <link href="{% static "/assets/css/bootstrap-theme.min.css" %}" rel="stylesheet">
     {% endblock styles %}
-
 </head>
 
 <!-- 3. Display the application -->
 <body>
 {% block content %}
 {% endblock content %}
-<my-app>Loading...</my-app>
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    {% block scripts %}
+        {#    <script src='app/app.component.js'></script>#}
+        <script src='/assets/app/main.js'></script>
+    {% endblock scripts %}
 </body>
 
 </html>
