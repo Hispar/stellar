@@ -13,25 +13,17 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf import settings
+# python imports
+from __future__ import absolute_import, unicode_literals
+
 from django.conf.urls import url, include
 from django.contrib import admin
+
 # import ships
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^ships', include('ships.urls')),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api/v1/', include('ships.api.urls', namespace='api')),
 ]
-
-if settings.DEBUG:
-    urlpatterns += [
-        url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': settings.MEDIA_ROOT,
-        }),
-        url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': settings.STATIC_ROOT,
-        }),
-        url(r'^assets/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': settings.DJANGO_ROOT + '/assets',
-        }),
-    ]

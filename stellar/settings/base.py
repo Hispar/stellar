@@ -101,13 +101,13 @@ MEDIA_URL = '/media/'
 # STATIC FILE CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-root
 STATIC_ROOT = normpath(join(SITE_ROOT, 'static'))
-
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
-STATIC_URL = '/static/'
-
-# See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
+#
+# # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
+STATIC_URL = '/assets/'
+#
+# # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
 STATICFILES_DIRS = (
-    normpath(join(SITE_ROOT, 'assets')),
+    normpath(join(DJANGO_ROOT, 'assets')),
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
@@ -171,7 +171,7 @@ LOCAL_APPS = (
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
-INSTALLED_APPS = BEFORE_DJANGO_APPS + DJANGO_APPS + LOCAL_APPS
+INSTALLED_APPS = BEFORE_DJANGO_APPS + DJANGO_APPS + UTILS_APPS + LOCAL_APPS
 # END APP CONFIGURATION
 
 
@@ -198,8 +198,7 @@ ROOT_URLCONF = '%s.urls' % SITE_NAME
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [join(DJANGO_ROOT, 'templates')]
-        ,
+        'DIRS': [join(DJANGO_ROOT, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
