@@ -12,6 +12,14 @@
             this.tab = 2;
         };
 
+        this.editShip = function (id) {
+            $http.get('/api/v1/ships/' + id)
+                .then(function (res) {
+                    $scope.ship = res.data;
+                });
+            this.tab = 3;
+        };
+
         this.selectedTab = function (setTab) {
             this.tab = setTab;
         };
