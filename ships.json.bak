@@ -1,0 +1,154 @@
+[
+  {
+    "model": "ships.ship",
+    "pk": 1,
+    "fields": {
+      "creation_date": "2016-02-11T12:33:26.047Z",
+      "modification_date": "2016-02-11T12:33:26.047Z",
+      "name": "Ship1",
+      "image": "http://vignette3.wikia.nocookie.net/starwars/images/c/c7/TIEfighter-Fathead.png/revision/latest?cb=20150310124222",
+      "description": "Tie fighter 1",
+      "fabrication_date": "2016-02-11T12:32:42Z",
+      "hp": "3000HP",
+      "power": "L8",
+      "color": "Blue",
+      "detection": false,
+      "boost": false,
+      "passengers": 3,
+      "reservation_date": null
+    }
+  },
+  {
+    "model": "ships.ship",
+    "pk": 2,
+    "fields": {
+      "creation_date": "2016-02-11T12:33:26.047Z",
+      "modification_date": "2016-02-11T12:33:26.047Z",
+      "name": "Ship2",
+      "image": "http://vignette3.wikia.nocookie.net/starwars/images/c/c7/TIEfighter-Fathead.png/revision/latest?cb=20150310124222",
+      "description": "Tie fighter 2",
+      "fabrication_date": "2016-02-11T12:32:42Z",
+      "hp": "3001HP",
+      "power": "L9",
+      "color": "Green",
+      "detection": false,
+      "boost": false,
+      "passengers": 4,
+      "reservation_date": null
+    }
+  },
+  {
+    "model": "ships.ship",
+    "pk": 3,
+    "fields": {
+      "creation_date": "2016-02-11T12:33:26.047Z",
+      "modification_date": "2016-02-11T12:33:26.047Z",
+      "name": "Ship3",
+      "image": "http://vignette3.wikia.nocookie.net/starwars/images/c/c7/TIEfighter-Fathead.png/revision/latest?cb=20150310124222",
+      "description": "Tie fighter 3",
+      "fabrication_date": "2016-02-11T12:32:42Z",
+      "hp": "3000HP",
+      "power": "L8",
+      "color": "Blue",
+      "detection": false,
+      "boost": false,
+      "passengers": 3,
+      "reservation_date": null
+    }
+  },
+  {
+    "model": "ships.ship",
+    "pk": 4,
+    "fields": {
+      "creation_date": "2016-02-11T12:33:26.047Z",
+      "modification_date": "2016-02-11T12:33:26.047Z",
+      "name": "Ship4",
+      "image": "http://vignette3.wikia.nocookie.net/starwars/images/c/c7/TIEfighter-Fathead.png/revision/latest?cb=20150310124222",
+      "description": "Tie fighter 4",
+      "fabrication_date": "2016-02-11T12:32:42Z",
+      "hp": "3000HP",
+      "power": "L8",
+      "color": "Blue",
+      "detection": false,
+      "boost": false,
+      "passengers": 3,
+      "reservation_date": null
+    }
+  },
+  {
+    "model": "ships.ship",
+    "pk": 5,
+    "fields": {
+      "creation_date": "2016-02-11T12:33:26.047Z",
+      "modification_date": "2016-02-11T12:33:26.047Z",
+      "name": "Ship5",
+      "image": "http://vignette3.wikia.nocookie.net/starwars/images/c/c7/TIEfighter-Fathead.png/revision/latest?cb=20150310124222",
+      "description": "Tie fighter 5",
+      "fabrication_date": "2016-02-11T12:32:42Z",
+      "hp": "3000HP",
+      "power": "L8",
+      "color": "Blue",
+      "detection": false,
+      "boost": false,
+      "passengers": 3,
+      "reservation_date": null
+    }
+  },
+  {
+    "model": "ships.ship",
+    "pk": 6,
+    "fields": {
+      "creation_date": "2016-02-11T12:33:26.047Z",
+      "modification_date": "2016-02-11T12:33:26.047Z",
+      "name": "Ship6",
+      "image": "http://vignette3.wikia.nocookie.net/starwars/images/c/c7/TIEfighter-Fathead.png/revision/latest?cb=20150310124222",
+      "description": "Tie fighter 6",
+      "fabrication_date": "2016-02-11T12:32:42Z",
+      "hp": "3000HP",
+      "power": "L8",
+      "color": "Blue",
+      "detection": false,
+      "boost": false,
+      "passengers": 3,
+      "reservation_date": null
+    }
+  },
+  {
+    "model": "ships.ship",
+    "pk": 7,
+    "fields": {
+      "creation_date": "2016-02-11T12:33:26.047Z",
+      "modification_date": "2016-02-11T12:33:26.047Z",
+      "name": "Ship7",
+      "image": "http://vignette3.wikia.nocookie.net/starwars/images/c/c7/TIEfighter-Fathead.png/revision/latest?cb=20150310124222",
+      "description": "Tie fighter 7",
+      "fabrication_date": "2016-02-11T12:32:42Z",
+      "hp": "3000HP",
+      "power": "L8",
+      "color": "Blue",
+      "detection": false,
+      "boost": false,
+      "passengers": 3,
+      "reservation_date": null
+    }
+  },
+  {
+    "model": "ships.ship",
+    "pk": 8,
+    "fields": {
+      "creation_date": "2016-02-11T12:33:26.047Z",
+      "modification_date": "2016-02-11T12:33:26.047Z",
+      "name": "Ship8",
+      "image": "http://vignette3.wikia.nocookie.net/starwars/images/c/c7/TIEfighter-Fathead.png/revision/latest?cb=20150310124222",
+      "description": "Tie fighter 8",
+      "fabrication_date": "2016-02-11T12:32:42Z",
+      "hp": "3000HP",
+      "power": "L8",
+      "color": "Blue",
+      "detection": false,
+      "boost": false,
+      "passengers": 3,
+      "reservation_date": null
+    }
+  }
+]

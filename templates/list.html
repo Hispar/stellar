@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            {% for ship in ship_list %}
+                <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
+                    {{ ship.name }}
+                    <img src="{{ ship.image }}" class="img-responsive img-rounded" alt="{{ ship.name }}">
+                </div>
+                {% if forloop.counter|divisibleby:4 %}
+                    </div>
+
+                    <div class="row">
+                {% endif %}
+            {% endfor %}
+            </div>
+    </div>
+{% endblock %}
