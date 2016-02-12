@@ -1,116 +1,130 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div ng-controller="PanelShipController as panel">
-        <section>
-            <ul>
-                {% verbatim %}
-                    <li ng-class="{ active:panel.isSelected(1) }"><a href ng-click="panel.selectedTab(1)">Select
-                        Ship</a>
-                    </li>
-                    <li ng-class="{ active:panel.isSelected(2) }"><a href>Ship details</a>
-                    </li>
-                    <li ng-class="{ active:panel.isSelected(3) }"><a href ng-click="panel.selectedTab(3)">Ship
-                        tunning</a>
-                    </li>
-                {% endverbatim %}
-            </ul>
-        </section>
-        <div class="container-fluid" ng-show="panel.isSelected(1)">
-            <div class="row">
-                {% for ship in ship_list %}
-                    <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-                        {{ ship.name }}
-                        <img src="{{ ship.image }}" class="img-responsive img-rounded" alt="{{ ship.name }}"
-                             ng-click="panel.selectShip({{ ship.id }})">
-                    </div>
-                    {% if forloop.counter|divisibleby:4 %}
+
+    <div class="container-fluid">
+        <nav class="navbar">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Admin The Dark Side</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="row" ng-controller="PanelShipController as panel">
+            <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
+                <section>
+                    <ul>
+                        {% verbatim %}
+                        <li ng-class="{ active:panel.isSelected(1) }"><a href ng-click="panel.selectedTab(1)">Select
+                            Ship</a>
+                        </li>
+                        <li ng-class="{ active:panel.isSelected(2) }"><a href ng-click="panel.selectedTab(2)">Ship
+                            details</a>
+                        </li>
+                        <li ng-class="{ active:panel.isSelected(3) }"><a href ng-click="panel.selectedTab(3)">Ship
+                            tunning</a>
+                        </li>
+                        {% endverbatim %}
+                    </ul>
+                </section>
+            </div>
+            <div class="col-lg-10 col-md-10 col-xs-10 col-sm-10">
+                <div ng-show="panel.isSelected(1)">
+                    <div class="row">
+                        {% for ship in ship_list %}
+                            <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
+                                {{ ship.name }}
+                                <img src="{{ ship.image }}" class="img-responsive img-rounded" alt="{{ ship.name }}"
+                                     ng-click="panel.selectShip({{ ship.id }})">
+                            </div>
+                            {% if forloop.counter|divisibleby:4 %}
+                                </div>
+                                <div class="row">
+                            {% endif %}
+                        {% endfor %}
                         </div>
-                        <div class="row">
-                    {% endif %}
-                {% endfor %}
                 </div>
-        </div>
-        <div class="container-fluid" ng-show="panel.isSelected(2)">
-            {% verbatim %}
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                <div class="container-fluid" ng-show="panel.isSelected(2)">
+                    {% verbatim %}
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
-                        {{ ship.description }}
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th>Specification</th>
-                                <th>Detail</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>Fabrication date</td>
-                                <td>{{ ship.fabrication_date | date : 'yyyy' }}</td>
-                            </tr>
-                            <tr>
-                                <td>HP</td>
-                                <td>{{ ship.hp }}</td>
-                            </tr>
-                            <tr>
-                                <td>Power</td>
-                                <td>{{ ship.power }}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1">
-                        <a href ng-click="panel.selectedTab(1)">Back to list</a>
-                    </div>
-                    <div class="col-lg-1 col-lg-offset-10 col-md-1 col-mdg-offset-10 col-xs-1 col-xs-offset-10 col-sm-1 col-sm-offset-10">
-                        <button ng-click="panel.editShip(ship.id)">Select</button>
-                    </div>
-                </div>
-            {% endverbatim %}
-        </div>
-        <div class="container-fluid" ng-show="panel.isSelected(3)">
-            {% verbatim %}
-                <form novalidate class="simple-form">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
-                            <img ng-src="{{ ship.image }}" class="img-responsive img-rounded" alt="{{ ship.name }}">
-                            colorpicker
-
-                            <label for="detection">Enable detection</label>
-                            <input type="checkbox" ng-model="ship.detection" name="detection" required=""/>
-                            <label for="boost">Install interstellar turbo boost</label>
-                            <input type="checkbox" ng-model="ship.boost" name="boost" required=""/>
-
-                            <select name="passengers" id="passengers" ng-model="ships.passengers">
-                              <option value="">---Please select---</option> <!-- not selected / blank option -->
-                              <option value="{{data.option1}}">Option 1</option> <!-- interpolation -->
-                              <option value="option-2">Option 2</option>
-                            </select>
-                            multiselect
-                            datepicker
+                            {{ ship.description }}
                         </div>
                         <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
-                            <div class="row">
-                                map
-                            </div>
-                            <div class="row">
-                                <input type="submit" ng-click="reserve(ship)" value="Reserve"/>
-                            </div>
-                            <div class="row">
-                                <input type="submit" ng-click="build(ship)" value="Build for me"/>
-                            </div>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Specification</th>
+                                    <th>Detail</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Fabrication date</td>
+                                    <td>{{ ship.fabrication_date | date : 'yyyy' }}</td>
+                                </tr>
+                                <tr>
+                                    <td>HP</td>
+                                    <td>{{ ship.hp }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Power</td>
+                                    <td>{{ ship.power }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                </form>
-            {% endverbatim %}
+                    <div class="row">
+                        <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1">
+                            <a href ng-click="panel.selectedTab(1)">Back to list</a>
+                        </div>
+                        <div class="col-lg-1 col-lg-offset-10 col-md-1 col-mdg-offset-10 col-xs-1 col-xs-offset-10 col-sm-1 col-sm-offset-10">
+                            <button ng-click="panel.editShip(ship.id)">Select</button>
+                        </div>
+                    </div>
+                    {% endverbatim %}
+                </div>
+                <div class="container-fluid" ng-show="panel.isSelected(3)">
+                    {% verbatim %}
+                    <form novalidate class="simple-form">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                                <img ng-src="{{ ship.image }}" class="img-responsive img-rounded" alt="{{ ship.name }}">
+                                colorpicker
+                                <input type="color" name="color" ng-model="ship.color">
+
+                                <label for="detection">Enable detection</label>
+                                <input type="checkbox" ng-model="ship.detection" name="detection" required=""/>
+                                <label for="boost">Install interstellar turbo boost</label>
+                                <input type="checkbox" ng-model="ship.boost" name="boost" required=""/>
+
+                                <select name="passengers" id="passengers" ng-model="ship.passengers"
+                                        ng-options="passenger for passenger in panel.passengers">
+                                </select>
+                                <input type="date" name="reservation_date" ng-model="ship.reservation_date">
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                                <div class="row">
+                                    map
+                                </div>
+                                <div class="row">
+                                    <input type="submit" ng-click="reserve(ship)" value="Reserve"/>
+                                </div>
+                                <div class="row">
+                                    <input type="submit" ng-click="build(ship)" value="Build for me"/>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    {% endverbatim %}
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
