@@ -21,11 +21,22 @@ from tools.models import DateModificationModelMixin
 
 
 class Ship(DateModificationModelMixin):
-    """Model to represent clothes brands (Zara, H&M, etc)
+    """Model to represent Ships
 
     Attributes:
         name: string
-        icon: string
+        image: string
+        description: text
+        fabrication_date: datetime
+        hp: string
+        power: string
+        color: string
+        detection: boolean
+        boost: boolean
+        passengers: integer
+        reservation_date: datetime
+        lat: float
+        lon: float
     """
     name = models.CharField(
         verbose_name=_('name'),
@@ -62,6 +73,16 @@ class Ship(DateModificationModelMixin):
         verbose_name=_('reservation date'),
         null=True,
         blank=True
+    )
+    lat = models.FloatField(
+        verbose_name=_('Latitude'),
+        blank=True,
+        null=True
+    )
+    lon = models.FloatField(
+        verbose_name=_('Longitude'),
+        blank=True,
+        null=True
     )
 
     def __str__(self):

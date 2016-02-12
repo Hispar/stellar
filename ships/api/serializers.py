@@ -17,4 +17,4 @@ class ShipSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ship
         fields = ('id', 'name', 'image', 'description', 'fabrication_date', 'hp', 'power', 'color', 'detection',
-                  'boost', 'passengers')
+                  'boost', 'passengers', 'reservation_date', 'lat', 'lon')
