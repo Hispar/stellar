@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <div class="container-fluid">
+    <div class="container-fluid" ng-controller="PanelShipController as panel">
         <nav class="navbar">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -10,114 +10,129 @@
                 </div>
             </div>
         </nav>
-
-        <div class="row" ng-controller="PanelShipController as panel">
-            <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
                 <section>
                     <ul>
                         {% verbatim %}
-                        <li ng-class="{ active:panel.isSelected(1) }"><a href ng-click="panel.selectedTab(1)">Select
-                            Ship</a>
-                        </li>
-                        <li ng-class="{ active:panel.isSelected(2) }"><a href ng-click="panel.selectedTab(2)">Ship
-                            details</a>
-                        </li>
-                        <li ng-class="{ active:panel.isSelected(3) }"><a href ng-click="panel.selectedTab(3)">Ship
-                            tunning</a>
-                        </li>
+                            <li ng-class="{ active:panel.isSelected(1) }"><a href ng-click="panel.loadShips();">Select
+                                Ship</a>
+                            </li>
+                            <li ng-class="{ active:panel.isSelected(2) }"><a href ng-click="panel.selectedTab(2)">Ship
+                                details</a>
+                            </li>
+                            <li ng-class="{ active:panel.isSelected(3) }"><a href ng-click="panel.selectedTab(3)">Ship
+                                tunning</a>
+                            </li>
                         {% endverbatim %}
                     </ul>
                 </section>
             </div>
-            <div class="col-lg-10 col-md-10 col-xs-10 col-sm-10">
+            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
                 <div ng-show="panel.isSelected(1)" data-ng-init="panel.loadShips()">
                     <div class="row">
                         {% verbatim %}
-                        <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3" ng-repeat="ship in ships">
-                            {{ ship.name }}
-                            <img ng-src="{{ ship.image }}" class="img-responsive img-rounded" alt="{{ ship.name }}"
-                                 ng-click="panel.selectShip(ship.id)">
-                        </div>
+                            <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3" ng-repeat="ship in ships">
+                                {{ ship.name }}
+                                <img ng-src="{{ ship.image }}" class="img-responsive img-rounded" alt="{{ ship.name }}"
+                                     ng-click="panel.selectShip(ship.id)">
+                            </div>
                         {% endverbatim %}
                     </div>
                 </div>
                 <div class="container-fluid" ng-show="panel.isSelected(2)">
                     {% verbatim %}
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                        <div class="row">
+                            <div class="col-lg-2 col-lg-offset-4 col-md-2 col-md-offset-4 col-xs-8 col-xs-offset-4 col-sm-12 center">
+                                <img ng-src="{{ ship.image }}" class="img-responsive img-rounded" alt="{{ ship.name }}"
+                                     ng-click="panel.selectShip(ship.id)">
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
-                            {{ ship.description }}
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
+                                {{ ship.description }}
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>Specification</th>
+                                        <th>Detail</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Fabrication date</td>
+                                        <td>{{ ship.fabrication_date | date : 'yyyy' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>HP</td>
+                                        <td>{{ ship.hp }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Power</td>
+                                        <td>{{ ship.power }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th>Specification</th>
-                                    <th>Detail</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>Fabrication date</td>
-                                    <td>{{ ship.fabrication_date | date : 'yyyy' }}</td>
-                                </tr>
-                                <tr>
-                                    <td>HP</td>
-                                    <td>{{ ship.hp }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Power</td>
-                                    <td>{{ ship.power }}</td>
-                                </tr>
-                                </tbody>
-                            </table>
+                        <div class="row">
+                            <div class="col-lg-1 col-md-1 col-xs-6 col-sm-2">
+                                <a href ng-click="panel.selectedTab(1)">Back to list</a>
+                            </div>
+                            <div class="col-lg-1 col-lg-offset-10 col-md-1 col-md-offset-10 col-xs-3 col-xs-offset-1 col-sm-1 col-sm-offset-8">
+                                <button ng-click="panel.editShip(ship.id); panel.showmap(ship.lat, ship.lon)">Select
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1">
-                            <a href ng-click="panel.selectedTab(1)">Back to list</a>
-                        </div>
-                        <div class="col-lg-1 col-lg-offset-10 col-md-1 col-mdg-offset-10 col-xs-1 col-xs-offset-10 col-sm-1 col-sm-offset-10">
-                            <button ng-click="panel.editShip(ship.id)">Select</button>
-                        </div>
-                    </div>
                     {% endverbatim %}
                 </div>
                 <div class="container-fluid" ng-show="panel.isSelected(3)">
                     <form novalidate class="simple-form">
                         {% csrf_token %}
                         {% verbatim %}
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
-                                <img ng-src="{{ ship.image }}" class="img-responsive img-rounded" alt="{{ ship.name }}">
-                                colorpicker
-                                <input type="color" name="color" ng-model="ship.color">
-
-                                <label for="detection">Enable detection</label>
-                                <input type="checkbox" ng-model="ship.detection" name="detection" required=""/>
-                                <label for="boost">Install interstellar turbo boost</label>
-                                <input type="checkbox" ng-model="ship.boost" name="boost" required=""/>
-
-                                <select name="passengers" id="passengers" ng-model="ship.passengers"
-                                        ng-options="passenger for passenger in panel.passengers">
-                                </select>
-                                <input type="date" name="reservation_date" ng-model="ship.reservation_date">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                                    <div class="form-group center">
+                                        <img ng-src="{{ ship.image }}" class="img-responsive img-rounded"
+                                             alt="{{ ship.name }}">
+                                        Ship principal image
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="detection">Ship color</label>
+                                        <input type="color" name="color" ng-model="ship.color">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="detection">Enable detection</label>
+                                        <input type="checkbox" ng-model="ship.detection" name="detection" required=""/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="boost">Install interstellar turbo boost</label>
+                                        <input type="checkbox" ng-model="ship.boost" name="boost" required=""/>
+                                    </div>
+                                    <div class="form-group">
+                                        <select name="passengers" id="passengers" ng-model="ship.passengers"
+                                                ng-options="passenger for passenger in panel.passengers">
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                       <input type="date" name="reservation_date" ng-model="ship.reservation_date">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                                    <div class="row">
+                                        <div id="map" class="img-responsive img-rounded col-md-12"></div>
+                                        Location of the ship
+                                    </div>
+                                    <div class="row">
+                                        <input type="submit" ng-click="panel.reserve(ship)" value="Reserve"/>
+                                    </div>
+                                    <div class="row">
+                                        <input type="submit" ng-click="panel.build(ship)" value="Build for me"/>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
-                                <div class="row">
-                                    map
-                                </div>
-                                <div class="row">
-                                    <input type="submit" ng-click="panel.reserve(ship)" value="Reserve"/>
-                                </div>
-                                <div class="row">
-                                    <input type="submit" ng-click="panel.build(ship)" value="Build for me"/>
-                                </div>
-                            </div>
-                        </div>
                         {% endverbatim %}
                     </form>
                 </div>
