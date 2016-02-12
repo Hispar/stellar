@@ -9,6 +9,14 @@
         <!-- Bootstrap core CSS -->
         <link href="{% static "/assets/css/bootstrap.min.css" %}" rel="stylesheet">
         <link href="{% static "/assets/css/bootstrap-theme.min.css" %}" rel="stylesheet">
+        <style>
+            #map {
+                width: 100%;
+                height: 300px;
+                margin-bottom: 15px;
+                border: 2px solid #fff;
+            }
+        </style>
     {% endblock styles %}
 </head>
 
@@ -17,11 +25,12 @@
 {% block content %}
 {% endblock content %}
 
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
-    {% block scripts %}
-        {#    <script src='app/app.component.js'></script>#}
-        <script src='/assets/app/main.js'></script>
-    {% endblock scripts %}
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js" async defer></script>
+{% block scripts %}
+    {#    <script src='app/app.component.js'></script>#}
+    <script src='/assets/app/main.js'></script>
+{% endblock scripts %}
 </body>
 
 </html>
