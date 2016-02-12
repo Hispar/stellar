@@ -3,6 +3,7 @@
 
     app.controller('PanelShipController', function ($scope, $http) {
         this.tab = 1;
+        this.passengers = Object.keys(Array.apply(1, Array(10))).map(Number);
 
         this.selectShip = function (id) {
             $http.get('/api/v1/ships/' + id)
