@@ -58,7 +58,7 @@ class Ship(DateModificationModelMixin):
         max_length=5)
     color = models.CharField(
         verbose_name=_('color'),
-        max_length=5)
+        max_length=10)
     detection = models.BooleanField(
         verbose_name=_('enable detection'),
         default=False)

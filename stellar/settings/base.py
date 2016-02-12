@@ -229,6 +229,6 @@ REST_FRAMEWORK = {
     # 'DEFAULT_RENDERER_CLASSES': [
     #     'rest_framework.renderers.JSONRenderer',
     # ],
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 50
 }
 # END DJANGO REST FRAMEWORK CONFIGURATION
