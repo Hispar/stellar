@@ -30,20 +30,16 @@
                 </section>
             </div>
             <div class="col-lg-10 col-md-10 col-xs-10 col-sm-10">
-                <div ng-show="panel.isSelected(1)">
+                <div ng-show="panel.isSelected(1)" data-ng-init="panel.loadShips()">
                     <div class="row">
-                        {% for ship in ship_list %}
-                            <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-                                {{ ship.name }}
-                                <img src="{{ ship.image }}" class="img-responsive img-rounded" alt="{{ ship.name }}"
-                                     ng-click="panel.selectShip({{ ship.id }})">
-                            </div>
-                            {% if forloop.counter|divisibleby:4 %}
-                                </div>
-                                <div class="row">
-                            {% endif %}
-                        {% endfor %}
+                        {% verbatim %}
+                        <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3" ng-repeat="ship in ships">
+                            {{ ship.name }}
+                            <img ng-src="{{ ship.image }}" class="img-responsive img-rounded" alt="{{ ship.name }}"
+                                 ng-click="panel.selectShip(ship.id)">
                         </div>
+                        {% endverbatim %}
+                    </div>
                 </div>
                 <div class="container-fluid" ng-show="panel.isSelected(2)">
                     {% verbatim %}
@@ -91,8 +87,9 @@
                     {% endverbatim %}
                 </div>
                 <div class="container-fluid" ng-show="panel.isSelected(3)">
-                    {% verbatim %}
                     <form novalidate class="simple-form">
+                        {% csrf_token %}
+                        {% verbatim %}
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
                                 <img ng-src="{{ ship.image }}" class="img-responsive img-rounded" alt="{{ ship.name }}">
@@ -114,15 +111,15 @@
                                     map
                                 </div>
                                 <div class="row">
-                                    <input type="submit" ng-click="reserve(ship)" value="Reserve"/>
+                                    <input type="submit" ng-click="panel.reserve(ship)" value="Reserve"/>
                                 </div>
                                 <div class="row">
-                                    <input type="submit" ng-click="build(ship)" value="Build for me"/>
+                                    <input type="submit" ng-click="panel.build(ship)" value="Build for me"/>
                                 </div>
                             </div>
                         </div>
+                        {% endverbatim %}
                     </form>
-                    {% endverbatim %}
                 </div>
             </div>
         </div>
