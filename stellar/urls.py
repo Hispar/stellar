@@ -23,7 +23,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^ships', include('ships.urls')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api/v1/', include('ships.api.urls', namespace='api')),
+    url(r'^$', include('ships.urls')),
 ]

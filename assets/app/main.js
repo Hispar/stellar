@@ -9,8 +9,10 @@
         $http.defaults.xsrfHeaderName = 'X-CSRFToken';
 
         this.loadShips = function () {
+            this.tab = 1;
             $http.get('/api/v1/ships/')
                 .then(function (res) {
+                    res.data.reservation_date = new Date(res.data.reservation_date);
                     $scope.ships = res.data.results;
                 });
         };
@@ -22,6 +24,7 @@
         this.selectShip = function (id) {
             $http.get('/api/v1/ships/' + id)
                 .then(function (res) {
+                    res.data.reservation_date = new Date(res.data.reservation_date);
                     $scope.ship = res.data;
                 });
             this.tab = 2;
@@ -34,6 +37,7 @@
         this.editShip = function (id) {
             $http.get('/api/v1/ships/' + id)
                 .then(function (res) {
+                    res.data.reservation_date = new Date(res.data.reservation_date);
                     $scope.ship = res.data;
                 });
             this.tab = 3;
@@ -44,10 +48,18 @@
          * @param ship
          */
         this.reserve = function (ship) {
+            if (ship.boost === undefined) {
+                ship.boost = false;
+            }
+            if (ship.detection === undefined) {
+                ship.detection = false;
+            }
             $http.put('/api/v1/ships/' + ship.id + '/', ship)
                 .then(function (res) {
+                    res.data.reservation_date = new Date(res.data.reservation_date);
                     $scope.ship = res.data;
                 });
+            ship.reservation_date = new Date(ship.reservation_date);
         };
 
         /**
@@ -55,6 +67,12 @@
          * @param ship
          */
         this.build = function (ship) {
+            if (ship.boost === undefined) {
+                ship.boost = false;
+            }
+            if (ship.detection === undefined) {
+                ship.detection = false;
+            }
             $http.post('/api/v1/ships/', ship)
                 .then(function (res) {
                     $scope.ship = res.data;
@@ -77,5 +95,46 @@
         this.isSelected = function (checkTab) {
             return this.tab === checkTab;
         };
+
+        /**
+         * Load map
+         */
+        this.loadmap = function () {
+
+            lat = 28.182329;
+
+            lon = -82.352912;
+
+            var mapOptions = {
+                center: new google.maps.LatLng(lat, lon),
+                zoom: 9,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                scrollwheel: true,
+                draggable: true,
+                panControl: true,
+                zoomControl: true,
+                mapTypeControl: true,
+                scaleControl: true,
+                streetViewControl: false,
+                overviewMapControl: true,
+                rotateControl: true,
+            };
+            var mapDiv = document.getElementById('map');
+            $scope.map = new google.maps.Map(mapDiv, mapOptions);
+        }
+
+        /**
+         * Load map
+         */
+        this.showmap = function (lat, lon) {
+            if (lat === null) {
+                lat = 28.182329;
+            }
+            if (lon === null) {
+                lon = -82.352912;
+            }
+            var center = new google.maps.LatLng(lat, lon);
+            $scope.map.setCenter(center);
+        }
     });
 })();

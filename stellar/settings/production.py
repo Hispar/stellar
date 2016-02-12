@@ -1,4 +1,4 @@
-"""Development settings and globals."""
+"""Production settings and globals."""
 
 from __future__ import absolute_import
 
@@ -16,28 +16,29 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # END EMAIL CONFIGURATION
 
 # DATABASE CONFIGURATION
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
-if os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine'):
-    # Running on production App Engine, so use a Google Cloud SQL database.
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'HOST': '/cloudsql/<your-cloud-sql-instance>',
-            'NAME': '<your-database-name>',
-            'USER': 'root',
-        }
+# # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
+# if os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine'):
+#     # Running on production App Engine, so use a Google Cloud SQL database.
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': '/cloudsql/{engineappid}:{dbid}',
+        'NAME': '{dbname}',
+        'USER': '{dbuser}',
+        'PASSWPORD': '{dbpass}'
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': '<your-database-name>',
-            'USER': '<your-database-user>',
-            'PASSWORD': '<your-database-password>',
-            'HOST': '<your-database-host>',
-            'PORT': '3306',
-        }
-    }
+}
+# else:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.mysql',
+#             'NAME': '<your-database-name>',
+#             'USER': '<your-database-user>',
+#             'PASSWORD': '<your-database-password>',
+#             'HOST': '<your-database-host>',
+#             'PORT': '3306',
+#         }
+#     }
 # END DATABASE CONFIGURATION
 
 # SECRET CONFIGURATION
