@@ -21,8 +21,8 @@ DJANGO_ROOT = dirname(dirname(dirname(abspath(__file__))))
 SITE_ROOT = dirname(DJANGO_ROOT)
 
 # Site name:
-SITE_NAME = basename(DJANGO_ROOT)
-
+# SITE_NAME = basename(DJANGO_ROOT)
+SITE_NAME = 'stellar'
 # Add our project to our pythonpath, this way we don't need to type our project
 # name in our dotted import paths:
 path.append(DJANGO_ROOT)
@@ -100,14 +100,14 @@ MEDIA_URL = '/media/'
 
 # STATIC FILE CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-root
-STATIC_ROOT = normpath(join(SITE_ROOT, 'static'))
+STATIC_ROOT = normpath(join(DJANGO_ROOT, 'static'))
 #
 # # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
 STATIC_URL = '/assets/'
 #
 # # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
 STATICFILES_DIRS = (
-    normpath(join(DJANGO_ROOT, 'assets')),
+    normpath(join(DJANGO_ROOT, 'static')),
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders

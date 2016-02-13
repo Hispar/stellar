@@ -26,7 +26,7 @@ env_variables:
   DJANGO_SETTINGS_MODULE: 'stellar.settings.production'
 
 handlers:
-- url: /static
+- url: /assets
   static_dir: static/
 - url: .*
   script: stellar.wsgi.application
