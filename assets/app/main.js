@@ -100,9 +100,7 @@
          * Load map
          */
         this.loadmap = function () {
-
             lat = 28.182329;
-
             lon = -82.352912;
 
             var mapOptions = {
@@ -121,12 +119,14 @@
             };
             var mapDiv = document.getElementById('map');
             $scope.map = new google.maps.Map(mapDiv, mapOptions);
+            $scope.map;
         }
 
         /**
          * Load map
          */
         this.showmap = function (lat, lon) {
+            setTimeout(function() {google.maps.event.trigger($scope.map, 'resize')}, 100);
             if (lat === null) {
                 lat = 28.182329;
             }
