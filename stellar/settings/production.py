@@ -1,4 +1,4 @@
-"""Development settings and globals."""
+"""Production settings and globals."""
 
 from __future__ import absolute_import
 
@@ -22,9 +22,10 @@ if os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine'):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'HOST': '/cloudsql/<your-cloud-sql-instance>',
-            'NAME': '<your-database-name>',
-            'USER': 'root',
+            'HOST': '/cloudsql/stellar-1219:stellartest1',
+            'NAME': 'stellar',
+            'USER': 'stellar_user',
+            'PASSWPORD': 'stellar_pass'
         }
     }
 else:
