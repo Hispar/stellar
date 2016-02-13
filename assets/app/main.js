@@ -48,7 +48,12 @@
          * @param ship
          */
         this.reserve = function (ship) {
-            //ship.reservation_date = ship.reservation_date.getFullYear() + '-' + ship.reservation_date.getMonth() + '-' + ship.reservation_date.getDate();
+            if (ship.boost === undefined) {
+                ship.boost = false;
+            }
+            if (ship.detection === undefined) {
+                ship.detection = false;
+            }
             $http.put('/api/v1/ships/' + ship.id + '/', ship)
                 .then(function (res) {
                     res.data.reservation_date = new Date(res.data.reservation_date);
@@ -62,6 +67,12 @@
          * @param ship
          */
         this.build = function (ship) {
+            if (ship.boost === undefined) {
+                ship.boost = false;
+            }
+            if (ship.detection === undefined) {
+                ship.detection = false;
+            }
             $http.post('/api/v1/ships/', ship)
                 .then(function (res) {
                     $scope.ship = res.data;
@@ -88,23 +99,42 @@
         /**
          * Load map
          */
-        this.showmap = function (lat, lon) {
+        this.loadmap = function () {
+
+            lat = 28.182329;
+
+            lon = -82.352912;
+
             var mapOptions = {
-                center: new google.maps.LatLng(28.1823294, -82.352912),
+                center: new google.maps.LatLng(lat, lon),
                 zoom: 9,
-                mapTypeId: google.maps.MapTypeId.HYBRID,
-                scrollwheel: false,
-                draggable: false,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                scrollwheel: true,
+                draggable: true,
                 panControl: true,
                 zoomControl: true,
                 mapTypeControl: true,
                 scaleControl: true,
-                streetViewControl: true,
+                streetViewControl: false,
                 overviewMapControl: true,
                 rotateControl: true,
             };
             var mapDiv = document.getElementById('map');
-            var map = new google.maps.Map(mapDiv, mapOptions);
+            $scope.map = new google.maps.Map(mapDiv, mapOptions);
+        }
+
+        /**
+         * Load map
+         */
+        this.showmap = function (lat, lon) {
+            if (lat === null) {
+                lat = 28.182329;
+            }
+            if (lon === null) {
+                lon = -82.352912;
+            }
+            var center = new google.maps.LatLng(lat, lon);
+            $scope.map.setCenter(center);
         }
     });
 })();
