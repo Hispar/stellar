@@ -35,3 +35,5 @@ Create a new CloudSQL instance.
     * Under  [Access Control > Authorization](https://console.developers.google.com/project/_/sql/instances/polls/access-control/users), Click
           "Create user account". Create a username and password and edit stellar/production/settings.py DATABASES
           to reflect this. Replace `<your-database-user>` and `<your-database-password>` with these variables.
+
+The database structure is included in the dbs folder, you need to load the sqls in your CloudSQL instance.

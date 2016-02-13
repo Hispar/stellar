@@ -47,8 +47,10 @@ class Ship(DateModificationModelMixin):
     description = models.TextField(
         verbose_name=_('ship description'),
     )
-    fabrication_date = models.DateTimeField(
+    fabrication_date = models.DateField(
         verbose_name=_('fabrication date'),
+        null=True,
+        blank=True
     )
     hp = models.CharField(
         verbose_name=_('horse power'),
@@ -69,7 +71,7 @@ class Ship(DateModificationModelMixin):
         verbose_name=_('number of passengers'),
         default=3
     )
-    reservation_date = models.DateTimeField(
+    reservation_date = models.DateField(
         verbose_name=_('reservation date'),
         null=True,
         blank=True

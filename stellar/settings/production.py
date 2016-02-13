@@ -16,29 +16,16 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # END EMAIL CONFIGURATION
 
 # DATABASE CONFIGURATION
-# # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
-# if os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine'):
-#     # Running on production App Engine, so use a Google Cloud SQL database.
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'HOST': '/cloudsql/{engineappid}:{dbid}',
-        'NAME': '{dbname}',
-        'USER': '{dbuser}',
-        'PASSWPORD': '{dbpass}'
+        'HOST': '/cloudsql/<your-app-id>:<your-cloudsql-instancename>',
+        'NAME': '<your-database-name>',
+        'USER': '<your-database-user>',
+        'PASSWORD': '<your-database-password>',
     }
 }
-# else:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.mysql',
-#             'NAME': '<your-database-name>',
-#             'USER': '<your-database-user>',
-#             'PASSWORD': '<your-database-password>',
-#             'HOST': '<your-database-host>',
-#             'PORT': '3306',
-#         }
-#     }
 # END DATABASE CONFIGURATION
 
 # SECRET CONFIGURATION

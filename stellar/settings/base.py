@@ -9,8 +9,7 @@ https://docs.djangoproject.com/en/1.9/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
-import os
-from os.path import abspath, basename, dirname, join, normpath
+from os.path import abspath, dirname, join, normpath
 from sys import path
 
 # PATH CONFIGURATION
@@ -67,7 +66,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # GENERAL CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#time-zone
 TIME_ZONE = 'Europe/Madrid'
@@ -107,7 +105,7 @@ STATIC_URL = '/assets/'
 #
 # # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
 STATICFILES_DIRS = (
-    normpath(join(DJANGO_ROOT, 'static')),
+    normpath(join(DJANGO_ROOT, 'assets')),
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
@@ -152,13 +150,6 @@ DJANGO_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    # Useful template tags:
-    # 'django.contrib.humanize',
-
-    # 'django.contrib.admindocs',
-    # sitemaps tool
-    # 'django.contrib.sitemaps',
 )
 
 UTILS_APPS = (
@@ -221,14 +212,6 @@ WSGI_APPLICATION = '%s.wsgi.application' % SITE_NAME
 
 # BEGIN DJANGO REST FRAMEWORK CONFIGURATION
 REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    # 'DEFAULT_PERMISSION_CLASSES': [
-    #     'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    # ],
-    # 'DEFAULT_RENDERER_CLASSES': [
-    #     'rest_framework.renderers.JSONRenderer',
-    # ],
     'PAGE_SIZE': 50
 }
 # END DJANGO REST FRAMEWORK CONFIGURATION
