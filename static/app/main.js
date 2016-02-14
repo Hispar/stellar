@@ -54,6 +54,7 @@
             if (ship.detection === undefined) {
                 ship.detection = false;
             }
+            ship.reservation_date = ship.reservation_date.getFullYear() + '-' + ship.reservation_date.getMonth() + '-' + ship.reservation_date.getDate();
             $http.put('/api/v1/ships/' + ship.id + '/', ship)
                 .then(function (res) {
                     res.data.reservation_date = new Date(res.data.reservation_date);
@@ -73,6 +74,7 @@
             if (ship.detection === undefined) {
                 ship.detection = false;
             }
+            ship.reservation_date = ship.reservation_date.getFullYear() + '-' + ship.reservation_date.getMonth() + '-' + ship.reservation_date.getDate();
             $http.post('/api/v1/ships/', ship)
                 .then(function (res) {
                     $scope.ship = res.data;
