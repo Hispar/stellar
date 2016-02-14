@@ -23,14 +23,3 @@ DATABASES = {
         'NAME': join(DJANGO_ROOT, 'db.sqlite3'),
     },
 }
-# END DATABASE CONFIGURATION
-
-# http://django-debug-toolbar.readthedocs.org/en/latest/installation.html
-INTERNAL_IPS = ('127.0.0.1',)
-# END TOOLBAR CONFIGURATION
-
-
-FIXTURE_DIRS = [
-    'dewepra.fixtures',
-    'products.fixtures',
-]
