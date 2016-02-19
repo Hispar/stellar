@@ -37,3 +37,7 @@ Create a new CloudSQL instance.
           to reflect this. Replace `<your-database-user>` and `<your-database-password>` with these variables.
 
 The database structure is included in the dbs folder, you need to load the sqls in your CloudSQL instance.
+
+
+## Notes
+The date fields don't seem to work correctly under Django and CloudSQL instance. The API didn't retrieve them. 
